@@ -1,4 +1,6 @@
 import os
+from pathlib import Path
+
 code = input("请输入您的代码文件名：")
 with open(code, 'r') as f:
     data = f.readlines()[0]
@@ -14,4 +16,8 @@ with open(code, 'r') as f:
         os.system('xhpkg install '+import_package)
         print('安装完成！')
     else:
-        pass
+        src_path = Path(code)
+        dst_path = Path(os.getcwd()+'/temp/'+"python.py")
+        src_path.copy(dst_path)
+        data.replace('导入 '+import_package, pkg_status)
+    
